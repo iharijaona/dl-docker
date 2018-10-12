@@ -105,7 +105,7 @@ RUN wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz && \
 		--with-system-libmpdec \
 		--with-system-ffi \
 		--with-fpectl \
-		--enable-optimizations
+		--enable-optimizations && \
 	make altinstall && \
 	cd .. && \
 	rm -rf Python-3.6.5/
