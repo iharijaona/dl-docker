@@ -91,10 +91,10 @@ RUN apt-get update && apt-get install -y \
 
 
 # Build and Install python3.6
-RUN wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz
-	tar -xvf Python-3.6.5.tar.xz
-	cd Python-3.6.5/
-	./configure --enable-shared \
+RUN wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz && \
+	tar -xvf Python-3.6.5.tar.xz && \
+	cd Python-3.6.5/ &&\
+	./configure --enable-shared && \
 		--prefix=/usr \
 		--enable-ipv6 \
 		--enable-loadable-sqlite-extensions \
@@ -106,8 +106,8 @@ RUN wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz
 		--with-system-ffi \
 		--with-fpectl \
 		--enable-optimizations
-	make altinstall
-	cd ..
+	make altinstall && \
+	cd .. && \
 	rm -rf Python-3.6.5/
 
 
