@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		python-dev rsync software-properties-common unzip zip \
 		zlib1g-dev libreadline-gplv2-dev libncursesw5-dev libsqlite3-dev tk-dev libgdbm-dev \
 		libc6-dev libbz2-dev bc g++ gfortran libffi-dev libfreetype6-dev libjpeg-dev \
-		liblcms2-dev libopenblas-dev liblapack-dev libopenjpeg2 libpng12-dev libssl-dev \
+		liblcms2-dev libopenblas-dev liblapack-dev libpng12-dev libssl-dev \
 		libtiff5-dev libwebp-dev libzmq3-dev nano qt5-default libvtk6-dev libpng-dev libjasper-dev \
 		libopenexr-dev libgdal-dev libdc1394-22-dev libavcodec-dev libavformat-dev \
 		libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm \
