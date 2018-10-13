@@ -77,8 +77,8 @@ RUN pip3 --no-cache-dir install \
 		nose h5py seaborn plotly sympy tqdm
 
 # Install other useful Python packages using pip
-RUN pip3.6 --no-cache-dir install --upgrade ipython && \
-	pip3.6 --no-cache-dir install \
+RUN pip3 --no-cache-dir install --upgrade ipython && \
+	pip3 --no-cache-dir install \
 		Cython ipykernel path.py pygments six sphinx wheel zmq && \
 	python3.5 -m ipykernel.kernelspec
 
