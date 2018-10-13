@@ -104,7 +104,7 @@ EXPOSE 8888
 ENV CUDNN_VERSION 7.3.1.20
 LABEL com.nvidia.cudnn.version="${CUDNN_VERSION}"
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends --allow-change-held-packages \
 		libcudnn7=$CUDNN_VERSION-1+cuda9.0 \
 		libcudnn7-dev=$CUDNN_VERSION-1+cuda9.0 \
 		cuda-command-line-tools-9-0 \
