@@ -74,7 +74,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends libjpeg-dev zli
 # Science libraries and other common packages
 RUN pip3 --no-cache-dir install \
     	numpy scipy sklearn scikit-image pandas matplotlib Cython requests \
-		nose h5py skimage seaborn plotly sympy tqdm
+		nose h5py seaborn plotly sympy tqdm
 
 # Install other useful Python packages using pip
 RUN pip3.6 --no-cache-dir install --upgrade ipython && \
