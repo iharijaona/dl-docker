@@ -147,3 +147,10 @@ You can do one of:
 
 ### What operating systems are supported?
 Docker is supported on all the OSes mentioned here: [Install Docker Engine](https://docs.docker.com/engine/installation/) (i.e. different flavors of Linux, Windows and OS X). The CPU version (Dockerfile.cpu) will run on all the above operating systems. However, the GPU version (Dockerfile.gpu) will only run on Linux OS. This is because Docker runs inside a virtual machine on Windows and OS X. Virtual machines don't have direct access to the GPU on the host. Unless PCI passthrough is implemented for these hosts, GPU support isn't available on non-Linux OSes at the moment.
+
+
+# Run
+```
+sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /workspace:/mnt/workspace smartpredict/dl-docker:gpu
+
+```
