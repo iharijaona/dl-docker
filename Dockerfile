@@ -22,8 +22,8 @@ RUN echo export CUDA_ROOT=/usr/local/cuda-9.0 >>/etc/profile && \
 #	echo export CUDNN_PATH=/usr/local/cuda/lib64/libcudnn.so.7 >>/etc/bash.bashrc && \
 	echo export PATH=$PATH:/usr/local/cuda-9.0/bin >>/etc/profile && \
 	echo export PATH=$PATH:/usr/local/cuda-9.0/bin >>/etc/bash.bashrc && \
-#	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64 >>/etc/profile && \
-#	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64 >>/etc/bash.bashrc && \
+	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64 >>/etc/profile && \
+	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64 >>/etc/bash.bashrc && \
 	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/profile && \
 	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/bash.bashrc
 
@@ -33,7 +33,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Essentials: developer tools, build tools, OpenBLAS
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		apt-utils git curl vim unzip openssh-client wget \
+		apt-utils sudo git curl vim unzip openssh-client wget \
 		build-essential cmake libopenblas-dev libcurl3-dev \
 		libfreetype6-dev libhdf5-dev libhdf5-serial-dev libpng12-dev libzmq3-dev pkg-config \
 		python-dev rsync software-properties-common unzip zip \
@@ -202,5 +202,9 @@ RUN luarocks install nn && \
 	cd iTorch && \
 	luarocks make
 
-WORKDIR "/root"
-CMD ["/bin/bash"]
+# Create working dir
+RUN mkdir /workspace
+
+WORKDIR "/workspace"
+
+CMD ["/run_jupyter.sh", "--allow-root"]
