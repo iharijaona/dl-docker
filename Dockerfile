@@ -29,11 +29,11 @@ RUN echo export CUDA_ROOT=/usr/local/cuda-9.0 >>/etc/profile && \
 	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64 >>/etc/profile && \
 	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64 >>/etc/bash.bashrc && \
 	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/profile && \
-	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/bash.bashrc
+	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/bash.bashrc && \
 	echo ". /root/torch/install/bin/torch-activate" >>/etc/profile && \
 	echo ". /root/torch/install/bin/torch-activate" >>/etc/bash.bashrc && \
 	echo export PATH=/root/torch/install/bin:$PATH >>/etc/profile && \
-	echo export PATH=/root/torch/install/bin:$PATH >>/etc/bash.bashrc && \
+	echo export PATH=/root/torch/install/bin:$PATH >>/etc/bash.bashrc
 	
 	
 	
