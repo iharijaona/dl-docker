@@ -91,8 +91,8 @@ RUN pip3 --no-cache-dir install jupyter jupyterlab && \
     mkdir /root/.jupyter 
 
 # Set password for jupyter
-RUN echo export PASSWORD="ZKg8nYn2C]xTB*jT2J*u)7M"*XRgn7{ >>/etc/profile && \
-	echo export PASSWORD="ZKg8nYn2C]xTB*jT2J*u)7M"*XRgn7{ >>/etc/bash.bashrc
+RUN echo export PASSWORD="H2VZDg2$LJQt~6R5#2jes{[Tbt.~Eq4" >>/etc/profile && \
+	echo export PASSWORD="H2VZDg2$LJQt~6R5#2jes{[Tbt.~Eq4" >>/etc/bash.bashrc
 
 # Set up notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
@@ -178,7 +178,9 @@ RUN pip3 install --no-cache-dir git+https://github.com/waleedka/coco.git#subdire
 RUN git clone https://github.com/torch/distro.git /root/torch --recursive && \
 	cd /root/torch && \
 	bash install-deps && \
-	yes no | ./install.sh
+	./install.sh && \
+	source ~/.bashrc && \
+	source ~/.profile
 
 # Export the LUA evironment variables manually
 ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/?/init.lua;/root/torch/install/share/lua/5.1/?.lua;/root/torch/install/share/lua/5.1/?/init.lua;./?.lua;/root/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
@@ -207,4 +209,4 @@ RUN mkdir /workspace
 
 WORKDIR "/workspace"
 
-CMD ["/run_jupyter.sh", "--allow-root"]
+CMD ["/root/run_jupyter.sh", "--allow-root"]
