@@ -178,7 +178,7 @@ RUN pip3 install --no-cache-dir git+https://github.com/waleedka/coco.git#subdire
 RUN git clone https://github.com/torch/distro.git /root/torch --recursive && \
 	cd /root/torch && \
 	bash install-deps && \
-	./install.sh && \
+	yes | ./install.sh && \
 	source ~/.bashrc && \
 	source ~/.profile
 
