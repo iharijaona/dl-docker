@@ -130,28 +130,6 @@ RUN pip3 install --no-cache-dir --upgrade tensorflow-gpu
 EXPOSE 6006
 
 #
-# OpenCV 3.4.1
-#
-# Dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libjpeg8-dev libtiff5-dev libjasper-dev libpng12-dev \
-    libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libgtk2.0-dev \
-    liblapacke-dev checkinstall && \
-    rm -rf /var/lib/apt/lists/*
-	
-# Get source from github
-RUN git clone -b 3.4.1 --depth 1 https://github.com/opencv/opencv.git /usr/local/src/opencv
-# Compile
-RUN cd /usr/local/src/opencv && mkdir build && cd build && \
-    cmake -D CMAKE_INSTALL_PREFIX=/usr/local \
-          -D BUILD_TESTS=OFF \
-          -D BUILD_PERF_TESTS=OFF \
-          -D PYTHON_DEFAULT_EXECUTABLE=$(which python3) \
-          .. && \
-    make -j"$(nproc)" && \
-    make install
-
-#
 # Caffe
 #
 # Dependencies
