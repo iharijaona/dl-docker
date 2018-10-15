@@ -174,6 +174,12 @@ RUN pip3 install torch && \
 # but it doesn't seem to be active anymore.
 RUN pip3 install --no-cache-dir git+https://github.com/waleedka/coco.git#subdirectory=PythonAPI
 
+# Install Torch
+RUN git clone https://github.com/torch/distro.git /root/torch --recursive && \
+	cd /root/torch && \
+	bash install-deps && \
+	yes no | ./install.sh
+
 # Export the LUA evironment variables manually
 ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/?/init.lua;/root/torch/install/share/lua/5.1/?.lua;/root/torch/install/share/lua/5.1/?/init.lua;./?.lua;/root/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
 	LUA_CPATH='/root/.luarocks/lib/lua/5.1/?.so;/root/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so' \
