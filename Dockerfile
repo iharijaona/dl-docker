@@ -1,6 +1,10 @@
 FROM nvidia/cuda:9.0-devel-ubuntu16.04
 MAINTAINER Harijaona Ravelondrina <hravelondrina@smartpredict.io>
 
+# Supress warnings about missing front-end. As recommended at:
+# http://stackoverflow.com/questions/22466255/is-it-possibe-to-answer-dialog-questions-when-installing-under-docker
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Export the CUDA evironment variables manually
 ENV CUDA_ROOT=/usr/local/cuda-9.0
 ENV CUDA_HOME=/usr/local/cuda-9.0
@@ -26,6 +30,9 @@ RUN echo export CUDA_ROOT=/usr/local/cuda-9.0 >>/etc/profile && \
 	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64 >>/etc/bash.bashrc && \
 	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/profile && \
 	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/bash.bashrc
+	echo ". /root/torch/install/bin/torch-activate" >>/etc/profile && \
+	echo ". /root/torch/install/bin/torch-activate" >>/etc/bash.bashrc
+	
 
 # Supress warnings about missing front-end. As recommended at:
 # http://stackoverflow.com/questions/22466255/is-it-possibe-to-answer-dialog-questions-when-installing-under-docker
@@ -178,9 +185,8 @@ RUN pip3 install --no-cache-dir git+https://github.com/waleedka/coco.git#subdire
 RUN git clone https://github.com/torch/distro.git /root/torch --recursive && \
 	cd /root/torch && \
 	bash install-deps && \
-	yes no | ./install.sh && \
-	. ~/.bashrc && \
-	. ~/.profile
+	yes yes | ./install.sh
+	
 
 # Export the LUA evironment variables manually
 ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/?/init.lua;/root/torch/install/share/lua/5.1/?.lua;/root/torch/install/share/lua/5.1/?/init.lua;./?.lua;/root/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
