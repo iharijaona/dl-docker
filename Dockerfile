@@ -31,7 +31,11 @@ RUN echo export CUDA_ROOT=/usr/local/cuda-9.0 >>/etc/profile && \
 	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/profile && \
 	echo export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__" >>/etc/bash.bashrc
 	echo ". /root/torch/install/bin/torch-activate" >>/etc/profile && \
-	echo ". /root/torch/install/bin/torch-activate" >>/etc/bash.bashrc
+	echo ". /root/torch/install/bin/torch-activate" >>/etc/bash.bashrc && \
+	echo export PATH=/root/torch/install/bin:$PATH >>/etc/profile && \
+	echo export PATH=/root/torch/install/bin:$PATH >>/etc/bash.bashrc && \
+	
+	
 	
 
 # Supress warnings about missing front-end. As recommended at:
@@ -106,6 +110,7 @@ COPY jupyter_notebook_config.py /root/.jupyter/
 
 # Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
 COPY run_jupyter.sh /root/
+RUN chmod +x /root/run_jupyter.sh
 EXPOSE 8888
 
 ENV CUDNN_VERSION 7.3.1.20
