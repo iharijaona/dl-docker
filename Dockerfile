@@ -102,8 +102,8 @@ RUN pip3 --no-cache-dir install jupyter jupyterlab && \
     mkdir /root/.jupyter 
 
 # Set password for jupyter
-RUN echo export PASSWORD="H2VZDg2$LJQt~6R5#2jes{[Tbt.~Eq4" >>/etc/profile && \
-	echo export PASSWORD="H2VZDg2$LJQt~6R5#2jes{[Tbt.~Eq4" >>/etc/bash.bashrc
+RUN echo export PASSWORD="deep@learning.1234567" >>/etc/profile && \
+	echo export PASSWORD="deep@learning.1234567" >>/etc/bash.bashrc
 
 # Set up notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
