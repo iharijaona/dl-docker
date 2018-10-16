@@ -151,6 +151,6 @@ Docker is supported on all the OSes mentioned here: [Install Docker Engine](http
 
 # Run
 ```
-sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /workspace:/mnt/workspace smartpredict/dl-docker:gpu
+sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /mnt/workspace:/workspace smartpredict/dl-docker:gpu
 
 ```
